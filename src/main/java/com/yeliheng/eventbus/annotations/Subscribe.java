@@ -5,7 +5,8 @@ import com.yeliheng.eventbus.enums.ThreadType;
 import java.lang.annotation.*;
 
 /**
- * Subscribe注解
+ * Subscribe 注解
+ * Subscirbe annotation
  * @author Liam Ye
  */
 @Documented

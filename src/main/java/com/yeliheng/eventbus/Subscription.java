@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 
 /**
  * Subscription 实体
+ * Subscription entity
  * @author Liam Ye
  */
 public class Subscription implements ISubscriber {

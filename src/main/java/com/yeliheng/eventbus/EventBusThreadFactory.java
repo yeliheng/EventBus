@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 /**
  * 事件总线线程工厂
+ * Event bus thread factory
  * @author Liam Ye
  */
 public class EventBusThreadFactory implements ThreadFactory {

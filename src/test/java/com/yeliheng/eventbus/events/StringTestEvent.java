@@ -4,6 +4,7 @@ import com.yeliheng.eventbus.interfaces.IEvent;
 
 /**
  * 字符串事件测试
+ * String event test
  * @author Liam Ye
  */
 public class StringTestEvent implements IEvent

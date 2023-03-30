@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * 事件总线多线程接收测试
+ * EventBus multi-thread receive test
  * @author Liam Ye
  */
 public class EventBusMultiThreadTest {

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * 事件总线基础测试用例
+ * EventBus basic test case
  * @author Liam Ye
  */
 public class EventBusBasicTest {

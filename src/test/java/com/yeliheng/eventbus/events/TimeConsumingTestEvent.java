@@ -3,6 +3,8 @@ package com.yeliheng.eventbus.events;
 import com.yeliheng.eventbus.interfaces.IEvent;
 
 /**
+ * 耗时操作事件测试
+ * Time-consuming operation event test
  * @author Liam Ye
  */
 public class TimeConsumingTestEvent implements IEvent {

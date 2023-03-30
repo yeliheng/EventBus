@@ -11,6 +11,7 @@ import java.util.Map;
 
 /**
  * 扫描被 Subscriber 标注的方法，查找所有的订阅者
+ * Scan the method which marked by Subscriber annotation to find all subscribers
  * @author Liam Ye
  */
 public class SubscriberFinder {

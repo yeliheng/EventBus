@@ -4,6 +4,7 @@ import com.yeliheng.eventbus.interfaces.IEvent;
 
 /**
  * 整型事件测试
+ * Integer event test
  * @author Liam Ye
  */
 public class IntTestEvent implements IEvent

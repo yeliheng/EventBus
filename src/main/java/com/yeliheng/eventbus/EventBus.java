@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 /**
  * 事件总线实现，用于注册订阅者和发布事件
+ * Event bus implementation, used to register subscribers and publish events
  * @author Liam Ye
  */
 public class EventBus {
