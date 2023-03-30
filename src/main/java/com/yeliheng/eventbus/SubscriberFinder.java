@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 扫描被@Subscriber标注的方法，查找所有的订阅者
+ * 扫描被 Subscriber 标注的方法，查找所有的订阅者
+ * @author Liam Ye
  */
-
 public class SubscriberFinder {
 
     public static Map<Class<?>, List<ISubscriber>> find(Object subscriber) {
@@ -31,7 +31,6 @@ public class SubscriberFinder {
     }
 
     private static void checkSubscriberMethod(Method method) {
-
         if(method.getParameterCount() != 1) {
             throw new IllegalArgumentException(String.format("[%s] Subscriber method: %s must have exactly 1 parameter", method.getDeclaringClass(), method.getName()));
         }

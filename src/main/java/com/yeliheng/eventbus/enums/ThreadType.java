@@ -1,5 +1,9 @@
 package com.yeliheng.eventbus.enums;
 
+/**
+ * 线程类型
+ * @author Liam Ye
+ */
 public enum ThreadType {
     /**
      * 当前线程，同步方式

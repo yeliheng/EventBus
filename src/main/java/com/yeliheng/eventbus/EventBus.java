@@ -1,20 +1,44 @@
 package com.yeliheng.eventbus;
 
+import com.yeliheng.eventbus.enums.ThreadType;
 import com.yeliheng.eventbus.interfaces.IEvent;
 import com.yeliheng.eventbus.interfaces.ISubscriber;
 
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-
+/**
+ * 事件总线实现，用于注册订阅者和发布事件
+ * @author Liam Ye
+ */
 public class EventBus {
 
     public static final Logger logger = Logger.getLogger(EventBus.class.getName());
+
     private static final Map<Class<?>, List<ISubscriber>> subscriberMap = new HashMap<>();
 
     private static final Map<Class<?>, Boolean> subscriberStatusMap = new HashMap<>();
 
     private static final EventBus instance = new EventBus();
+
+    private static final EventBusThreadFactory factory = new EventBusThreadFactory(1);
+
+    public static final int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2;
+
+    public static final int MAX_POOL_SIZE = CORE_POOL_SIZE * 2;
+
+    private static final Executor executor = new ThreadPoolExecutor(
+            CORE_POOL_SIZE,
+            MAX_POOL_SIZE,
+            3L,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(),
+            factory
+            );
 
     private EventBus() {
         if(instance != null) {
@@ -67,7 +91,11 @@ public class EventBus {
             return;
         }
         for (ISubscriber subscriber : subscribers) {
-            subscriber.invoke(event);
+            if(subscriber.getThreadType() == ThreadType.ASYNC) {
+                executor.execute(() -> subscriber.invoke(event));
+            }else {
+                subscriber.invoke(event);
+            }
         }
     }
 

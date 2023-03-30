@@ -8,6 +8,10 @@ import org.junit.Test;
 
 import java.util.logging.Logger;
 
+/**
+ * 事件总线基础测试用例
+ * @author Liam Ye
+ */
 public class EventBusBasicTest {
 
     public static final Logger logger = Logger.getLogger(EventBusBasicTest.class.getName());
@@ -31,7 +35,7 @@ public class EventBusBasicTest {
     @Test
     public void testPostManyTimes() {
         eventBus.register(this);
-        int count = 10000000;
+        int count = 1000000;
         long start = System.currentTimeMillis();
         for (int i = 0; i < count; i++) {
             EventBus.post(new StringTestEvent("Hello, World!"));

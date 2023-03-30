@@ -4,6 +4,10 @@ import com.yeliheng.eventbus.enums.ThreadType;
 
 import java.lang.annotation.*;
 
+/**
+ * Subscribe注解
+ * @author Liam Ye
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})

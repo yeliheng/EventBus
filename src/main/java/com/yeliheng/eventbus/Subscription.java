@@ -6,6 +6,10 @@ import com.yeliheng.eventbus.interfaces.ISubscriber;
 
 import java.lang.reflect.Method;
 
+/**
+ * Subscription 实体
+ * @author Liam Ye
+ */
 public class Subscription implements ISubscriber {
 
     private final Object subscriber;
