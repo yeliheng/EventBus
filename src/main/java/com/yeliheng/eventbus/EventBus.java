@@ -3,13 +3,14 @@ package com.yeliheng.eventbus;
 import com.yeliheng.eventbus.enums.ThreadType;
 import com.yeliheng.eventbus.interfaces.IEvent;
 import com.yeliheng.eventbus.interfaces.ISubscriber;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
  * 事件总线实现，用于注册订阅者和发布事件
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class EventBus {
 
-    public static final Logger logger = Logger.getLogger(EventBus.class.getName());
+    public static final Logger logger = LoggerFactory.getLogger(EventBus.class);
 
     private static final Map<Class<?>, List<ISubscriber>> subscriberMap = new HashMap<>();
 
@@ -54,16 +55,15 @@ public class EventBus {
     public void register(Object subscriber) {
         Objects.requireNonNull(subscriber);
         if(subscriberStatusMap.get(subscriber.getClass()) != null) {
-            logger.warning(String.format("Subscriber %s has already been registered",subscriber.getClass()));
+            logger.warn(String.format("Subscriber %s has already been registered",subscriber.getClass()));
             return;
         }
-        // 找到已注册的单个事件的所有订阅者 事件类 -> 订阅者列表
+        // 建立事件类到订阅者的映射
         Map<Class<?>, List<ISubscriber>> registeredSubs = SubscriberFinder.find(subscriber);
         synchronized (this) {
             if(!registeredSubs.isEmpty()) {
                 subscriberStatusMap.put(subscriber.getClass(), true);
             }
-            // 将单个注册的订阅者列表合并到总的订阅者列表中
             registeredSubs.forEach((subscriberClass, subscribers) -> subscriberMap.computeIfAbsent(subscriberClass, k -> new ArrayList<>()).addAll(subscribers));
         }
     }
@@ -73,14 +73,14 @@ public class EventBus {
         if(subscriberMap != null && !subscriberMap.isEmpty()) {
             subscriberMap.forEach((subscriberClass, subscribers) -> {
                 if(subscribers == null || subscribers.isEmpty()) {
-                    logger.warning(String.format("Subscriber %s was not registered",subscriber.getClass()));
+                    logger.warn(String.format("Subscriber %s was not registered",subscriber.getClass()));
                     return;
                 }
                 subscribers.removeIf(sub -> sub.getSubscriber() == subscriber);
                 subscriberStatusMap.remove(subscriber.getClass());
             });
         }else {
-            logger.warning(String.format("Subscriber %s was not registered",subscriber.getClass()));
+            logger.warn(String.format("Subscriber %s was not registered",subscriber.getClass()));
         }
     }
 

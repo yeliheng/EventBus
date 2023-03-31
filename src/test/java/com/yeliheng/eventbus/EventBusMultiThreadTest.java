@@ -6,7 +6,8 @@ import com.yeliheng.eventbus.events.DiscardTestEvent;
 import com.yeliheng.eventbus.events.StringTestEvent;
 import com.yeliheng.eventbus.events.TimeConsumingTestEvent;
 import org.junit.Test;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 事件总线多线程接收测试
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  * @author Liam Ye
  */
 public class EventBusMultiThreadTest {
-    public static final Logger logger = Logger.getLogger(EventBusMultiThreadTest.class.getName());
+    public static final Logger logger = LoggerFactory.getLogger(EventBusMultiThreadTest.class);
 
     public EventBus eventBus = EventBus.getInstance();
 
@@ -36,7 +37,7 @@ public class EventBusMultiThreadTest {
         eventBus.unregister(this);
         logger.info("[Sync] Operation completed.");
         Thread.sleep(3000);
-        logger.info("[Sync] Thread terminated");
+        logger.info("[Sync] Thread terminated.");
     }
 
     @Test

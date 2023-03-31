@@ -5,8 +5,9 @@ import com.yeliheng.eventbus.enums.ThreadType;
 import com.yeliheng.eventbus.events.IntTestEvent;
 import com.yeliheng.eventbus.events.StringTestEvent;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.logging.Logger;
 
 /**
  * 事件总线基础测试用例
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class EventBusBasicTest {
 
-    public static final Logger logger = Logger.getLogger(EventBusBasicTest.class.getName());
+    public static final Logger logger = LoggerFactory.getLogger(EventBusBasicTest.class);
 
     public EventBus eventBus = EventBus.getInstance();
 
