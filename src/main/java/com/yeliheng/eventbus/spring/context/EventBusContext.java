@@ -35,12 +35,13 @@ public class EventBusContext implements ApplicationListener<ApplicationContextEv
 
     private synchronized void shutdownSafely() {
         try {
+            // 终止线程池
             Field executorField = EventBus.class.getDeclaredField("executor");
             executorField.setAccessible(true);
             ExecutorService executorService = (ExecutorService) executorField.get(null);
             executorService.shutdown();
         } catch (Exception e) {
-            logger.error("Failed to shutdown, Unexpected exception: " + e.getMessage());
+            logger.error(String.format("Failed to shutdown, Unexpected exception: %s",e.getMessage()));
             return;
         }
         logger.info("EventBus successfully shutdown.");

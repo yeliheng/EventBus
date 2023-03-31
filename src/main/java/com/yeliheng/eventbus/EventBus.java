@@ -63,6 +63,7 @@ public class EventBus {
         synchronized (this) {
             if(!registeredSubs.isEmpty()) {
                 subscriberStatusMap.put(subscriber.getClass(), true);
+                logger.info(String.format("Registered: %s",subscriber.getClass()));
             }
             registeredSubs.forEach((subscriberClass, subscribers) -> subscriberMap.computeIfAbsent(subscriberClass, k -> new ArrayList<>()).addAll(subscribers));
         }
