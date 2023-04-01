@@ -95,4 +95,6 @@ public static void main(String[] args){
 
 完整示例参见：[EventBusBasicTest](./src/test/java/com/yeliheng/eventbus/EventBusBasicTest.java)
 
-祝使用愉快！
+## 许可证
+
+EventBus 使用 Apache License 2.0 许可证，详情请参阅 [LICENSE](./LICENSE) 文件。

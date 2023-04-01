@@ -6,8 +6,8 @@ EventBus is a lightweight and high-performance event bus, suitable for Java and 
 ## EventBus Features
 
 - Easy to use, only three lines of code, you can elegantly implement an event publishing and listening function. The project uses the singleton pattern and provides a shared EventBus instance globally.
-- Compatibility, support pure Java applications and Spring/SpringBoot framework, in the Spring framework, no need to manually register the subscriber, EventBus will automatically scan the Bean and register.
-- High performance, support asynchronous, in asynchronous mode, the logic in the subscriber will run in a separate thread, and be managed by the thread pool.
+- Compatibility, support pure Java applications and Spring/SpringBoot framework. In the Spring framework, no need to register the subscriber manually, EventBus will automatically scan the bean and register.
+- High performance, support asynchronous. In asynchronous mode, the logic in the subscriber will run in a separate thread, and be managed by the thread pool.
 - Tiny, EventBus has no heavily dependencies, is tiny, the jar file is only about 15 kb.
 
 ## Environment Requirements
@@ -20,7 +20,7 @@ EventBus is a lightweight and high-performance event bus, suitable for Java and 
 
 ```xml
 <dependency>
-    <groupId>com.yeliheng.eventbus</groupId>
+    <groupId>com.yeliheng</groupId>
     <artifactId>eventbus</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -95,4 +95,6 @@ When using the Spring/SpringBoot framework, EventBus will automatically scan the
 
 There are also some [examples](./src/test/java/com/yeliheng/eventbus/EventBusBasicTest.java).
 
-Enjoy it!
+## License
+
+EventBus is released under the [Apache 2.0 license](./LICENSE).
